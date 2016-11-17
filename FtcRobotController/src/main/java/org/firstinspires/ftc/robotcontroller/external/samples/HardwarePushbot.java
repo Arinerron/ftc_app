@@ -35,13 +35,11 @@ public class HardwarePushbot
     public static final double ARM_DOWN_POWER  = -0.45 ;
 
     /* local OpMode members. */
-    HardwareMap hwMap           =  null;
+    private HardwareMap hwMap           =  null;
     private ElapsedTime period  = new ElapsedTime();
 
     /* Constructor */
-    public HardwarePushbot(){
-
-    }
+    public HardwarePushbot() {}
 
     /* Initialize standard Hardware interfaces */
     public void init(HardwareMap ahwMap) {
@@ -82,17 +80,15 @@ public class HardwarePushbot
      * @param periodMs  Length of wait cycle in mSec.
      */
     public void waitForTick(long periodMs) {
-
         long  remaining = periodMs - (long)period.milliseconds();
 
         // sleep for the remaining portion of the regular cycle period.
-        if (remaining > 0) {
+        if (remaining > 0)
             try {
                 Thread.sleep(remaining);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
-        }
 
         // Reset the cycle clock for the next pass.
         period.reset();
